@@ -8,7 +8,7 @@ import tkinter
 def button_select(event, self=None):
     x0 = self.nWindow.winfo_pointerx() - self.nWindow.winfo_rootx() - 40
     y0 = self.nWindow.winfo_pointery() - self.nWindow.winfo_rooty() - 550
-    if x0 >= 0 and y0 >= 0 and len(self.key_selects) < 13:
+    if x0 >= 0 and y0 >= 0 and len(self.key_selects) < 13 and len(self.key_etalon) > len(self.key_selects):
         sss = 141
 
         x = int(x0/sss)
