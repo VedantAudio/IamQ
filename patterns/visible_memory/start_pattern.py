@@ -48,6 +48,7 @@ class Main:
         self.ax_nat.get_yaxis().set_visible(False)
         self.ax_nat.cla()
         self.ax_nat.plot([0, 2600], [0, 200], '.', color='white')
+        self.canvasAgg_nat.draw()
 
         """
             Поле для вспоминания
@@ -66,6 +67,7 @@ class Main:
         self.ax_fin.get_yaxis().set_visible(False)
         self.ax_fin.cla()
         self.ax_fin.plot([0, 2600], [0, 200], '.', color='white')
+        self.canvasAgg_fin.draw()
 
         """
             Поле для выведения всех символов
@@ -84,6 +86,7 @@ class Main:
         self.ax_figs.get_yaxis().set_visible(False)
         self.ax_figs.cla()
         self.ax_figs.plot([0, 2600], [0, 600], '.', color='white')
+        self.canvasAgg_figs.draw()
 
         self.canvas_figs.bind('<Motion>', lambda e: button_move_mouse(e, self=self))
 

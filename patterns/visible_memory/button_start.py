@@ -14,8 +14,14 @@ def button_finish(self):
     self.button_finish.bind('<Button-1>', lambda e: click_finish(self=self))
 
 def click_finish(self=None):
+
+    self.key_selects = []
+
     self.ax_nat.cla()
     self.ax_nat.plot([0, 2600], [0, 200], '.', color='white')
+    self.ax_fin.cla()
+    self.ax_fin.plot([0, 2600], [0, 200], '.', color='white')
+    self.canvasAgg_fin.draw()
 
     n_figures = []
     while len(n_figures) <= 5:
@@ -29,10 +35,12 @@ def click_finish(self=None):
                 self.ax_nat.fill(x + n_figure*200, y, color=c, alpha=.5)
                 self.ax_nat.plot(x + n_figure*200, y, color='black', linewidth=.1)
 
-                self.canvasAgg_nat.draw()
-                self.canvas_nat = self.canvasAgg_nat.get_tk_widget()
-                self.canvas_nat.pack(fill=BOTH, expand=1)
-                self.frm_nat.pack(fill=BOTH, expand=1)
+    self.key_etalon = n_figures
+
+    self.canvasAgg_nat.draw()
+    self.canvas_nat = self.canvasAgg_nat.get_tk_widget()
+    self.canvas_nat.pack(fill=BOTH, expand=1)
+    self.frm_nat.pack(fill=BOTH, expand=1)
 
 def click_start(self=None):
     self.ax_figs.cla()
@@ -66,7 +74,7 @@ def click_start(self=None):
         nx = figureq-ny*13
 
         for color in color_kit:
-            for n in np.arange(np.random.randint(2)+1):
+            for n in np.arange(np.random.randint(20)+1):
 
                 size_fig = np.random.randint(2) + 3
 
@@ -80,10 +88,10 @@ def click_start(self=None):
                 self.ax_figs.fill(xfill + nx*200, yfill + ny*200, color=color, alpha=.5)
                 self.ax_figs.plot(xfill + nx*200, yfill + ny*200, color='black', linewidth=.1)
 
-                self.canvasAgg_figs.draw()
-                self.canvas_figs = self.canvasAgg_figs.get_tk_widget()
-                self.canvas_figs.pack(fill=BOTH, expand=1)
-                self.frm_figs.pack(fill=BOTH, expand=1)
+        self.canvasAgg_figs.draw()
+        self.canvas_figs = self.canvasAgg_figs.get_tk_widget()
+        self.canvas_figs.pack(fill=BOTH, expand=1)
+        self.frm_figs.pack(fill=BOTH, expand=1)
 
         self.fillsx[figureq].append(fillsx)
         self.fillsy[figureq].append(fillsy)
