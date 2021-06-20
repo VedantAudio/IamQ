@@ -2,7 +2,7 @@ import tkinter
 import matplotlib
 
 from patterns.visible_memory.button_start import button_start, button_finish
-from patterns.visible_memory.buttons_select import button_move_mouse
+from patterns.visible_memory.buttons_select import button_move_mouse, button_select
 
 matplotlib.use("TkAgg")
 
@@ -28,6 +28,8 @@ class Main:
         self.selectWindow.attributes("-topmost", True)
         self.selectWindow.configure(background='black')
         self.selectWindow.wm_attributes('-alpha', 0.3)
+
+        self.selectWindow.bind('<Button-1>', lambda e: button_select(e, self=self))
 
         """
             Поле для запоминания
