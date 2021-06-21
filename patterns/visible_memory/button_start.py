@@ -53,7 +53,7 @@ def click_start(self=None):
     """
         вывод фигур для запоминания
     """
-    colors = ['lightgreen', 'yellow', 'coral', 'aqua', 'gray', 'violet']
+    colors = ['lightgreen', 'yellow', 'coral', 'aqua', 'gray', 'violet', 'orange', 'white']
 
     for figureq in np.arange(39):
 
@@ -74,7 +74,7 @@ def click_start(self=None):
         nx = figureq-ny*13
 
         for color in color_kit:
-            for n in np.arange(np.random.randint(20)+1):
+            for n in np.arange(np.random.randint(3)+1):
 
                 size_fig = np.random.randint(2) + 3
 
