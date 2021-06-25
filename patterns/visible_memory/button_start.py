@@ -32,8 +32,14 @@ def click_finish(self=None):
         for xfill, yfill in zip(self.fillsx[key_figure], self.fillsy[key_figure]):
             for x, y, c in zip(xfill, yfill, self.colors_kit[key_figure]):
 
-                self.ax_nat.fill(x + n_figure*200, y, color=c, alpha=.5)
-                self.ax_nat.plot(x + n_figure*200, y, color='black', linewidth=.1)
+                if self.options['diff_angle'] == 0:ratio_angle = 1
+                else: ratio_angle = np.random.randint(self.options['diff_angle']) + 1
+
+                theta = np.deg2rad(360 / ratio_angle)  # поворот на n градусов
+                xt = (x - 94) * np.cos(theta) - (y - 94) * np.sin(theta) + 94
+                yt = (x - 94) * np.sin(theta) + (y - 94) * np.cos(theta) + 94
+                self.ax_nat.fill(xt + n_figure * 200, yt, color=c, alpha=.5)
+                self.ax_nat.plot(xt + n_figure * 200, yt, color='black', linewidth=.1)
 
     self.key_etalon = n_figures
 
@@ -80,15 +86,24 @@ def click_start(self=None):
                 size_fig = np.random.randint(self.options['difficult_fig_max']) + 2
                 if size_fig < self.options['difficult_fig_min']: size_fig = self.options['difficult_fig_min']
 
-                xfill = np.random.randint(self.options['difficult_detals'], size=size_fig)*ratio_detals
-                yfill = np.random.randint(self.options['difficult_detals'], size=size_fig)*ratio_detals
+                x = np.random.randint(self.options['difficult_detals'], size=size_fig)*ratio_detals
+                y = np.random.randint(self.options['difficult_detals'], size=size_fig)*ratio_detals
 
-                fillsx.append(xfill)
-                fillsy.append(yfill)
+                fillsx.append(x)
+                fillsy.append(y)
                 colors_kit.append(color)
 
-                self.ax_figs.fill(xfill + nx*200, yfill + ny*200, color=color, alpha=.5)
-                self.ax_figs.plot(xfill + nx*200, yfill + ny*200, color='black', linewidth=.1)
+                if self.options['diff_angle'] == 0: ratio_angle = 1
+                else: ratio_angle = np.random.randint(self.options['diff_angle']) + 1
+
+                theta = np.deg2rad(360 / ratio_angle)  # поворот на n градусов
+                xt = (x - 94) * np.cos(theta) - (y - 94) * np.sin(theta) + 94
+                yt = (x - 94) * np.sin(theta) + (y - 94) * np.cos(theta) + 94
+                self.ax_figs.fill(xt + nx * 200, yt + ny * 200, color=color, alpha=.5)
+                self.ax_figs.plot(xt + nx * 200, yt + ny * 200, color='black', linewidth=.1)
+
+                # self.ax_figs.fill(xfill + nx*200, yfill + ny*200, color=color, alpha=.5)
+                # self.ax_figs.plot(xfill + nx*200, yfill + ny*200, color='black', linewidth=.1)
 
         self.canvasAgg_figs.draw()
         self.canvas_figs = self.canvasAgg_figs.get_tk_widget()

@@ -9,10 +9,11 @@ def set_default_options(self=None):
         difficult_fig_min - минимальная сложность фигуг
         difficult_detals - детализация построения фигур в кнопке (минимум 2, оптимально 12)
         memory_figs - количество фигур для запоминания (оптимально 5, максимум 12)
+        diff_angle - сложность случайного поворота фигур (0 - нет поворота, 1 - два вида поворота, 2 - три вида поворота)
     """
 
-    self.options = {'name_options': 'default', 'n_figures': 13, 'n_colours': 2, 'rand_fig': 2, 'difficult_fig_min': 3, 'difficult_fig_max': 6,
-                    'difficult_detals': 2, 'memory_figs': 12}
+    self.options = {'name_options': 'default', 'n_figures': 13, 'n_colours': 2, 'rand_fig': 6, 'difficult_fig_min': 2, 'difficult_fig_max': 6,
+                    'difficult_detals': 2, 'memory_figs': 12, 'diff_angle': 3}
 
 def set_pattern_options(self=None, pattern=None):
     """
@@ -41,3 +42,5 @@ def set_pattern_options(self=None, pattern=None):
 
         if self.options['memory_figs'] < 1: self.options['memory_figs'] = 1
         if self.options['memory_figs'] > 12: self.options['memory_figs'] = 12
+
+        if self.options['diff_angle'] < 0: self.options['diff_angle'] = 0

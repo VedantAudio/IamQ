@@ -25,8 +25,14 @@ def button_select(event, self=None):
             for xfill, yfill in zip(self.fillsx[key_fig_select], self.fillsy[key_fig_select]):
                 for x, y, c in zip(xfill, yfill, self.colors_kit[key_fig_select]):
 
-                    self.ax_fin.fill(x + n_figure*200, y, color=c, alpha=.5)
-                    self.ax_fin.plot(x + n_figure*200, y, color='black', linewidth=.1)
+                    if self.options['diff_angle'] == 0: ratio_angle = 1
+                    else: ratio_angle = np.random.randint(self.options['diff_angle']) + 1
+
+                    theta = np.deg2rad(360 / ratio_angle) #поворот на n градусов
+                    xt = (x - 94) * np.cos(theta) - (y - 94) * np.sin(theta) + 94
+                    yt = (x - 94) * np.sin(theta) + (y - 94) * np.cos(theta) + 94
+                    self.ax_fin.fill(xt + n_figure*200, yt, color=c, alpha=.5)
+                    self.ax_fin.plot(xt + n_figure*200, yt, color='black', linewidth=.1)
 
             self.canvasAgg_fin.draw()
             self.canvas_fin = self.canvasAgg_fin.get_tk_widget()

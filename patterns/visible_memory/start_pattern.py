@@ -1,6 +1,7 @@
 import tkinter
 import matplotlib
 
+from patterns.visible_memory.button_options import button_options_pattern
 from patterns.visible_memory.button_start import button_start, button_finish
 from patterns.visible_memory.buttons_select import button_move_mouse, button_select
 from patterns.visible_memory.pattern_options import set_default_options
@@ -98,6 +99,7 @@ class Main:
         """
         button_start(self)
         button_finish(self)
+        button_options_pattern(self)
 
         self.nWindow.mainloop()
 
