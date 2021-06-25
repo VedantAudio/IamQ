@@ -3,6 +3,7 @@ import matplotlib
 
 from patterns.visible_memory.button_start import button_start, button_finish
 from patterns.visible_memory.buttons_select import button_move_mouse, button_select
+from patterns.visible_memory.pattern_options import set_default_options
 
 matplotlib.use("TkAgg")
 
@@ -89,6 +90,8 @@ class Main:
         self.canvasAgg_figs.draw()
 
         self.canvas_figs.bind('<Motion>', lambda e: button_move_mouse(e, self=self))
+
+        set_default_options(self=self)
 
         """
             Кнопки управления

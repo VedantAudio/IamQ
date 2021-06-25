@@ -24,8 +24,8 @@ def click_finish(self=None):
     self.canvasAgg_fin.draw()
 
     n_figures = []
-    while len(n_figures) <= 5:
-        n_fig = np.random.randint(39)
+    while len(n_figures) <= self.options['memory_figs']:
+        n_fig = np.random.randint(self.options['n_figures'])
         if n_fig not in n_figures: n_figures.append(n_fig)
 
     for n_figure, key_figure in enumerate(n_figures):
@@ -54,15 +54,16 @@ def click_start(self=None):
         вывод фигур для запоминания
     """
     colors = ['lightgreen', 'yellow', 'coral', 'aqua', 'gray', 'violet', 'orange', 'white']
+    ratio_detals = 192 / self.options['difficult_detals']
 
-    for figureq in np.arange(39):
+    for figureq in np.arange(self.options['n_figures']):
 
         self.fillsx[figureq] = []
         self.fillsy[figureq] = []
         self.colors_kit[figureq] = []
 
         color_kit = []
-        while len(color_kit) <= 2: #3
+        while len(color_kit) < self.options['n_colours']: #3
             col = colors[np.random.randint(len(colors))]
             if col not in color_kit: color_kit.append(col)
 
@@ -74,12 +75,13 @@ def click_start(self=None):
         nx = figureq-ny*13
 
         for color in color_kit:
-            for n in np.arange(np.random.randint(3)+1):
+            for n in np.arange(np.random.randint(self.options['rand_fig'])+1):
 
-                size_fig = np.random.randint(2) + 3
+                size_fig = np.random.randint(self.options['difficult_fig_max']) + 2
+                if size_fig < self.options['difficult_fig_min']: size_fig = self.options['difficult_fig_min']
 
-                xfill = np.random.randint(24, size=size_fig)*8
-                yfill = np.random.randint(24, size=size_fig)*8
+                xfill = np.random.randint(self.options['difficult_detals'], size=size_fig)*ratio_detals
+                yfill = np.random.randint(self.options['difficult_detals'], size=size_fig)*ratio_detals
 
                 fillsx.append(xfill)
                 fillsy.append(yfill)
