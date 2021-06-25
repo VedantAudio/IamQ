@@ -12,7 +12,7 @@ def set_default_options(self=None):
     """
 
     self.options = {'name_options': 'default', 'n_figures': 13, 'n_colours': 2, 'rand_fig': 2, 'difficult_fig_min': 3, 'difficult_fig_max': 6,
-                    'difficult_detals': 3, 'memory_figs': 12}
+                    'difficult_detals': 2, 'memory_figs': 12}
 
 def set_pattern_options(self=None, pattern=None):
     """

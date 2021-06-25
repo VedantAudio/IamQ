@@ -15,25 +15,26 @@ def button_select(event, self=None):
         y = int(y0/sss)
 
         key_fig_select = x+(2-y)*13
-        self.key_selects.append(key_fig_select)
+        if key_fig_select < self.options['n_figures']:
+            self.key_selects.append(key_fig_select)
 
-        """
-            Построение выбранной фигуры
-        """
-        n_figure = len(self.key_selects) - 1
-        for xfill, yfill in zip(self.fillsx[key_fig_select], self.fillsy[key_fig_select]):
-            for x, y, c in zip(xfill, yfill, self.colors_kit[key_fig_select]):
+            """
+                Построение выбранной фигуры
+            """
+            n_figure = len(self.key_selects) - 1
+            for xfill, yfill in zip(self.fillsx[key_fig_select], self.fillsy[key_fig_select]):
+                for x, y, c in zip(xfill, yfill, self.colors_kit[key_fig_select]):
 
-                self.ax_fin.fill(x + n_figure*200, y, color=c, alpha=.5)
-                self.ax_fin.plot(x + n_figure*200, y, color='black', linewidth=.1)
+                    self.ax_fin.fill(x + n_figure*200, y, color=c, alpha=.5)
+                    self.ax_fin.plot(x + n_figure*200, y, color='black', linewidth=.1)
 
-        self.canvasAgg_fin.draw()
-        self.canvas_fin = self.canvasAgg_fin.get_tk_widget()
-        self.canvas_fin.pack(fill=BOTH, expand=1)
-        self.frm_fin.pack(fill=BOTH, expand=1)
+            self.canvasAgg_fin.draw()
+            self.canvas_fin = self.canvasAgg_fin.get_tk_widget()
+            self.canvas_fin.pack(fill=BOTH, expand=1)
+            self.frm_fin.pack(fill=BOTH, expand=1)
 
-        if len(self.key_etalon) == len(self.key_selects):
-            print()
+            if len(self.key_etalon) == len(self.key_selects):
+                print()
 
 
 def button_move_mouse(event, self=None):
