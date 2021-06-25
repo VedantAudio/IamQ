@@ -63,7 +63,7 @@ def click_start(self=None):
         self.colors_kit[figureq] = []
 
         color_kit = []
-        while len(color_kit) < self.options['n_colours']: #3
+        while len(color_kit) < self.options['n_colours']:
             col = colors[np.random.randint(len(colors))]
             if col not in color_kit: color_kit.append(col)
 
