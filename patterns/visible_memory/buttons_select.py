@@ -29,8 +29,9 @@ def button_select(event, self=None):
                     else: ratio_angle = np.random.randint(self.options['diff_angle']) + 1
 
                     theta = np.deg2rad(360 / ratio_angle) #поворот на n градусов
-                    xt = (x - 94) * np.cos(theta) - (y - 94) * np.sin(theta) + 94
-                    yt = (x - 94) * np.sin(theta) + (y - 94) * np.cos(theta) + 94
+                    xy_mean = (x.mean() + y.mean()) / 2
+                    xt = (x - xy_mean) * np.cos(theta) - (y - xy_mean) * np.sin(theta) + xy_mean
+                    yt = (x - xy_mean) * np.sin(theta) + (y - xy_mean) * np.cos(theta) + xy_mean
                     self.ax_fin.fill(xt + n_figure*200, yt, color=c, alpha=.5)
                     self.ax_fin.plot(xt + n_figure*200, yt, color='black', linewidth=.1)
 
